@@ -126,7 +126,7 @@ img {
 }
 
 .change-theme {
-  color: var(--white-color);
+  color: var(--text-color-black);
   font-size: 1.25rem;
   cursor: pointer;
   transition: color .4s;
@@ -251,7 +251,7 @@ body.dark-theme {
 }
 
 .nav__toggle {
-  color: var(--white-color);
+  color: var(--text-color-black);
   transition: color .4s;
 }
 
