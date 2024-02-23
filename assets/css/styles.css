@@ -205,9 +205,10 @@ body.dark-theme {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  background: linear-gradient(180deg,
+  background: solid var(--first-color);
+              /* linear-gradient(180deg,
               hsl(var(--hue), 90%, 80%),
-              hsl(var(--hue), 90%, 30%));
+              hsl(var(--hue), 90%, 30%)); */
 }
 
 .perfil__img {
