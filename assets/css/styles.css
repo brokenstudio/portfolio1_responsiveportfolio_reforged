@@ -495,9 +495,7 @@ body.dark-theme {
 .services__modal {
   position: fixed;
   inset: 0;
-  background-color: hsla(var(--hue), 90%, 30%, .3);
-  -webkit-backdrop-filter: blur(24px); /* For Safari */
-  backdrop-filter: blur(24px);
+  background-color: rgba(255, 255, 255, 0.7); /* Fallback: semi-transparent white */
   display: grid;
   place-items: center;
   padding: 2rem 1.5rem;
@@ -505,6 +503,15 @@ body.dark-theme {
   visibility: hidden;
   z-index: var(--z-modal);
   transition: opacity .4s, visibility .4s;
+}
+
+/* For browsers that support backdrop-filter (except Firefox) */
+@supports (-webkit-backdrop-filter: blur(24px)) or (backdrop-filter: blur(24px)) {
+  .services__modal {
+    background-color: hsla(var(--hue), 90%, 30%, .3);
+    -webkit-backdrop-filter: blur(24px); /* For Safari */
+    backdrop-filter: blur(24px);
+  }
 }
 
 .services__modal-content {
