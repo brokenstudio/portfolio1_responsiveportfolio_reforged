@@ -136,8 +136,8 @@ img {
 body.dark-theme {
   --title-color: hsl(var(--hue), 24%, 85%);
   --text-color: hsl(var(--hue), 8%, 70%);
-  --body-color: hsl(var(--hue), 16%, 8%);
-  --container-color: hsl(var(--hue), 16%, 12%);
+  --body-color: hsl(var(--hue), 16%, 6%);
+  --container-color: hsl(var(--hue), 16%, 10%);
   --shadow-color: hsla(var(--hue), 32%, 4%, .4);
 }
 
