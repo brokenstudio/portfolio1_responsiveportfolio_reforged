@@ -59,28 +59,16 @@ themeButton.addEventListener('click', () => {
 })
 
 
-/*=============== MOBILE INTERACTIVE LINK ===============*/
-let activeLink = null
 
+/*=============== MOBILE TOUCH HOVER ===============*/
 const workLinks = document.querySelectorAll('.work__link')
 
 workLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-
-        if (activeLink !== link) {
-            e.preventDefault()
-
-            workLinks.forEach(l => l.classList.remove('touch-active'))
-
-            link.classList.add('touch-active')
-
-            activeLink = link
-        }
-        else {
-            activeLink = null
-        }
-    })
+    link.addEventListener('touchstart', () => {
+        link.classList.add('touch-active')
+    }, { passive: true })
 })
+
 
 
 
