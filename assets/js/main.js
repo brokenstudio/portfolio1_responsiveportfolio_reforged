@@ -59,30 +59,42 @@ themeButton.addEventListener('click', () => {
 })
 
 
-/*=============== MOBILE TOUCH HOVER + REDIRECT ===============*/
+/*=============== MOBILE INTERACTIVE LINK ===============*/
+let activeLink = null
+
 const workLinks = document.querySelectorAll('.work__link')
 
 workLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
 
-    // Highlight when touching
-    link.addEventListener('touchstart', () => {
-        link.classList.add('touch-active')
-    }, { passive: true })
+        if (activeLink !== link) {
+            e.preventDefault()
 
-    // Remove highlight when leaving (optional fallback)
-    link.addEventListener('touchend', () => {
-        setTimeout(() => {
-            link.classList.remove('touch-active')
-        }, 300)
+            workLinks.forEach(l => l.classList.remove('touch-active'))
+
+            link.classList.add('touch-active')
+
+            activeLink = link
+        }
+        else {
+            activeLink = null
+        }
     })
-
 })
 
-/*=============== RESET HOVER ON PAGE LOAD ===============*/
-window.addEventListener('pageshow', () => {
+
+
+/*=============== FORCE RESET ON RETURN ===============*/
+window.addEventListener('pageshow', (event) => {
     const workLinks = document.querySelectorAll('.work__link')
 
     workLinks.forEach(link => {
         link.classList.remove('touch-active')
     })
-})
+
+    // 🔥 extra fix for back navigation cache
+    if (event.persisted) {
+        workLinks.forEach(link => {
+            link.classList.remove('touch-active')
+        })
+    }
