@@ -57,3 +57,20 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+
+
+/*=============== MOBILE TOUCH EFFECT ===============*/
+const workLinks = document.querySelectorAll('.work__link')
+
+workLinks.forEach(link => {
+    link.addEventListener('touchstart', () => {
+        link.classList.add('touch-active')
+    })
+
+    link.addEventListener('touchend', () => {
+        setTimeout(() => {
+            link.classList.remove('touch-active')
+        }, 200)
+    })
+})
