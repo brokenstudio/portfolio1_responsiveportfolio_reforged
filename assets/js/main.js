@@ -59,33 +59,24 @@ themeButton.addEventListener('click', () => {
 })
 
 
-/*=============== MOBILE INTERACTIVE LINK ===============*/
-let activeLink = null
-
+/*=============== MOBILE TOUCH HOVER + REDIRECT ===============*/
 const workLinks = document.querySelectorAll('.work__link')
 
 workLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
 
-        // First tap: highlight only
-        if (activeLink !== link) {
-            e.preventDefault()
+    // Highlight when touching
+    link.addEventListener('touchstart', () => {
+        link.classList.add('touch-active')
+    }, { passive: true })
 
-            // remove highlight from others
-            workLinks.forEach(l => l.classList.remove('touch-active'))
-
-            // add highlight
-            link.classList.add('touch-active')
-
-            activeLink = link
-        }
-        // Second tap: allow navigation
-        else {
-            activeLink = null
-        }
+    // Remove highlight when leaving (optional fallback)
+    link.addEventListener('touchend', () => {
+        setTimeout(() => {
+            link.classList.remove('touch-active')
+        }, 300)
     })
-})
 
+})
 
 /*=============== RESET HOVER ON PAGE LOAD ===============*/
 window.addEventListener('pageshow', () => {
