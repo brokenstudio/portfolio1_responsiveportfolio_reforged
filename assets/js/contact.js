@@ -1,28 +1,39 @@
 /*=============== EMAIL JS ===============*/
-const contactForm = document.getElementById('contact-form'),
-      contactMessage = document.getElementById('contact-message')
+const contactForm = document.getElementById('contact-form')
+const contactMessage = document.getElementById('contact-message')
+
+// ✅ Initialize EmailJS (REQUIRED)
+emailjs.init('zT_yXH-_sHeWILXSR')
 
 const sendEmail = (e) => {
     e.preventDefault()
 
-    // srviceID - templateID - #form - publicKey
-    emailjs.sendForm ('service_4sbv7ja','template_7ig9bqh','#contact-form','zT_yXH-_sHeWILXSR')
-        .then(() => {
-            // Show Sent Message
-            contactMessage.textContent = 'Message sent successfully ✅'
+    contactMessage.textContent = 'Sending... ⏳'
 
-            // Remove Message after five seconds
-            setTimeout(() => {
-                contactMessage.textContent =''
-            }, 5000)
+    emailjs.sendForm(
+        'service_4sbv7ja',
+        'template_7ig9bqh',
+        contactForm
+    )
+    .then(() => {
+        contactMessage.textContent = 'Message sent successfully ✅'
+        contactMessage.style.color = 'green'
 
-            // Clear Input Fields
-            contactForm.reset()
+        setTimeout(() => {
+            contactMessage.textContent = ''
+        }, 5000)
 
-        }, () => {
-            // Show error Message
-            contactMessage.textContent = ' Message not sent (service error) ❌'
-        })
+        contactForm.reset()
+    })
+    .catch((error) => {
+        console.error('EmailJS Error:', error)
+
+        contactMessage.textContent = 'Message not sent ❌'
+        contactMessage.style.color = 'red'
+    })
 }
 
-contactForm.addEventListener ('submit', sendEmail)
+// ✅ Prevent crash if form not found
+if (contactForm) {
+    contactForm.addEventListener('submit', sendEmail)
+}
