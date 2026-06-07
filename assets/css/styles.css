@@ -1156,4 +1156,14 @@ body.dark-theme {
     transform: translate(.5rem, -.5rem) rotate(-30deg);
   }
 }
-``
+
+
+.touch-active .work__img {
+  transform: scale(1.1);
+  filter: none;
+}
+
+.touch-active .work__icon {
+  transform: translate(.5rem, -.5rem) rotate(-30deg);
+}
+
