@@ -59,18 +59,27 @@ themeButton.addEventListener('click', () => {
 })
 
 
+/*=============== MOBILE HOVER (TOUCH HOLD) ===============*/
+document.addEventListener('DOMContentLoaded', () => {
+    const workLinks = document.querySelectorAll('.work__link')
 
-/*=============== MOBILE TOUCH EFFECT ===============*/
-const workLinks = document.querySelectorAll('.work__link')
+    if (workLinks.length > 0) {
+        workLinks.forEach(link => {
 
-workLinks.forEach(link => {
-    link.addEventListener('touchstart', () => {
-        link.classList.add('touch-active')
-    })
+            // hover effect when finger touches
+            link.addEventListener('touchstart', () => {
+                link.classList.add('touch-active')
+            })
 
-    link.addEventListener('touchend', () => {
-        setTimeout(() => {
-            link.classList.remove('touch-active')
-        }, 200)
-    })
+            // remove when finger leaves
+            link.addEventListener('touchend', () => {
+                link.classList.remove('touch-active')
+            })
+
+            // safety (if interrupted)
+            link.addEventListener('touchcancel', () => {
+                link.classList.remove('touch-active')
+            })
+        })
+    }
 })
