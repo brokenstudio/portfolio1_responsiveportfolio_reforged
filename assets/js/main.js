@@ -59,27 +59,30 @@ themeButton.addEventListener('click', () => {
 })
 
 
-/*=============== MOBILE HOVER (TOUCH HOLD) ===============*/
-document.addEventListener('DOMContentLoaded', () => {
-    const workLinks = document.querySelectorAll('.work__link')
+/*=============== MOBILE INTERACTIVE LINK ===============*/
+let activeLink = null
 
-    if (workLinks.length > 0) {
-        workLinks.forEach(link => {
+const workLinks = document.querySelectorAll('.work__link')
 
-            // hover effect when finger touches
-            link.addEventListener('touchstart', () => {
-                link.classList.add('touch-active')
-            })
+workLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
 
-            // remove when finger leaves
-            link.addEventListener('touchend', () => {
-                link.classList.remove('touch-active')
-            })
+        // First tap: highlight only
+        if (activeLink !== link) {
+            e.preventDefault()
 
-            // safety (if interrupted)
-            link.addEventListener('touchcancel', () => {
-                link.classList.remove('touch-active')
-            })
-        })
-    }
+            // remove highlight from others
+            workLinks.forEach(l => l.classList.remove('touch-active'))
+
+            // add highlight
+            link.classList.add('touch-active')
+
+            activeLink = link
+        }
+        // Second tap: allow navigation
+        else {
+            activeLink = null
+        }
+    })
 })
+``
