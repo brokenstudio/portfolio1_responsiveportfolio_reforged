@@ -86,3 +86,12 @@ workLinks.forEach(link => {
     })
 })
 
+
+/*=============== RESET HOVER ON PAGE LOAD ===============*/
+window.addEventListener('pageshow', () => {
+    const workLinks = document.querySelectorAll('.work__link')
+
+    workLinks.forEach(link => {
+        link.classList.remove('touch-active')
+    })
+})
