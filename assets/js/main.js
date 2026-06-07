@@ -84,17 +84,10 @@ workLinks.forEach(link => {
 
 
 
-/*=============== FORCE RESET ON RETURN ===============*/
+/*=============== RESET ONLY WHEN PAGE RETURNS ===============*/
 window.addEventListener('pageshow', (event) => {
-    const workLinks = document.querySelectorAll('.work__link')
-
-    workLinks.forEach(link => {
-        link.classList.remove('touch-active')
-    })
-
-    // 🔥 extra fix for back navigation cache
     if (event.persisted) {
-        workLinks.forEach(link => {
-            link.classList.remove('touch-active')
-        })
+        document.querySelectorAll('.work__link')
+            .forEach(link => link.classList.remove('touch-active'))
     }
+})
