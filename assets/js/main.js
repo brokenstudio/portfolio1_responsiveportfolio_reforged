@@ -60,22 +60,27 @@ themeButton.addEventListener('click', () => {
 
 
 
-/*=============== MOBILE TOUCH HOVER ===============*/
-const workLinks = document.querySelectorAll('.work__link')
+/*=============== MOBILE HOVER (TOUCH HOLD) ===============*/
+document.addEventListener('DOMContentLoaded', () => {
+    const workLinks = document.querySelectorAll('.work__link')
 
-workLinks.forEach(link => {
-    link.addEventListener('touchstart', () => {
-        link.classList.add('touch-active')
-    }, { passive: true })
-})
+    if (workLinks.length > 0) {
+        workLinks.forEach(link => {
 
+            // hover effect when finger touches
+            link.addEventListener('touchstart', () => {
+                link.classList.add('touch-active')
+            })
 
+            // remove when finger leaves
+            link.addEventListener('touchend', () => {
+                link.classList.remove('touch-active')
+            })
 
-
-/*=============== RESET ONLY WHEN PAGE RETURNS ===============*/
-window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-        document.querySelectorAll('.work__link')
-            .forEach(link => link.classList.remove('touch-active'))
+            // safety (if interrupted)
+            link.addEventListener('touchcancel', () => {
+                link.classList.remove('touch-active')
+            })
+        })
     }
 })
