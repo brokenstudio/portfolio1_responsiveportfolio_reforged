@@ -1146,14 +1146,10 @@ body.dark-theme {
   transform: translate(.5rem, -.5rem) rotate(-30deg);
 }
 
-/* FORCE EFFECT ON MOBILE DEVICES */
+/* Optional: subtle mobile default */
 @media (hover: none) {
   .work__img {
-    filter: none;
-  }
-
-  .work__icon {
-    transform: translate(.5rem, -.5rem) rotate(-30deg);
+    filter: grayscale(.3); /* ✅ slight effect only */
   }
 }
 
