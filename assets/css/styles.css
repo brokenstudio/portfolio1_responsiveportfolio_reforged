@@ -1134,3 +1134,26 @@ body.dark-theme {
     width: 40vw;
   }
   }
+
+
+/* MOBILE TAP EFFECT */
+.work__link:active .work__img {
+  transform: scale(1.1);
+  filter: none;
+}
+
+.work__link:active .work__icon {
+  transform: translate(.5rem, -.5rem) rotate(-30deg);
+}
+
+/* FORCE EFFECT ON MOBILE DEVICES */
+@media (hover: none) {
+  .work__img {
+    filter: none;
+  }
+
+  .work__icon {
+    transform: translate(.5rem, -.5rem) rotate(-30deg);
+  }
+}
+``
